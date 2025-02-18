@@ -1,0 +1,51 @@
+.players-list {
+  margin-bottom: 2rem;
+}
+
+.players-list h3 {
+  color: #1976d2;
+  margin-bottom: 1rem;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.player-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.player-card.selected {
+  border-color: #1976d2;
+  background-color: #e3f2fd;
+}
+
+.player-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 0.5rem;
+}
+
+.player-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.player-position {
+  color: #666;
+  font-size: 0.9rem;
+} 
