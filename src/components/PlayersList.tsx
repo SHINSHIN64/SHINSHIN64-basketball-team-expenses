@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, useState } from 'react';
 import {
   List,
   ListItem,
@@ -22,7 +22,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import { Player } from '../types';
-import { useState } from 'react';
 
 interface PlayersListProps {
   players: Player[];
@@ -58,7 +57,7 @@ const getAvatarColor = (position: string) => {
   return colors[position as keyof typeof colors] || '#757575';
 };
 
-const PlayerDialog = ({ open, onClose, onSubmit, initialData, title }: PlayerDialogProps) => {
+const PlayerDialog: FC<PlayerDialogProps> = ({ open, onClose, onSubmit, initialData, title }) => {
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
     number: initialData?.number || '',
@@ -127,7 +126,7 @@ const PlayerDialog = ({ open, onClose, onSubmit, initialData, title }: PlayerDia
   );
 };
 
-export const PlayersList = ({ players, onAddPlayer, onEditPlayer, onDeletePlayer }: PlayersListProps) => {
+export const PlayersList: FC<PlayersListProps> = ({ players, onAddPlayer, onEditPlayer, onDeletePlayer }) => {
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);

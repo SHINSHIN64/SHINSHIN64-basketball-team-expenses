@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   TextField,
@@ -9,6 +9,7 @@ import {
   InputLabel,
   Box,
   Typography,
+  SelectChangeEvent,
 } from '@mui/material';
 import { Expense, ExpenseCategory, Player } from '../types';
 
@@ -26,7 +27,7 @@ const categories: ExpenseCategory[] = [
   'その他'
 ];
 
-export const ExpenseForm = ({ onSubmit, players }: ExpenseFormProps) => {
+export const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmit, players }) => {
   const { control, handleSubmit, reset } = useForm<Omit<Expense, 'id'>>();
 
   const onSubmitForm = (data: Omit<Expense, 'id'>) => {
@@ -58,12 +59,12 @@ export const ExpenseForm = ({ onSubmit, players }: ExpenseFormProps) => {
       <Controller
         name="playerId"
         control={control}
-        defaultValue={null}
-        render={({ field, fieldState }) => (
+        defaultValue=""
+        render={({ field }) => (
           <FormControl fullWidth>
             <InputLabel>選手</InputLabel>
             <Select {...field} label="選手">
-              <MenuItem value={null}>チーム共通</MenuItem>
+              <MenuItem value="">チーム共通</MenuItem>
               {players.map((player) => (
                 <MenuItem key={player.id} value={player.id}>
                   {player.name} (#{player.number})
@@ -111,6 +112,7 @@ export const ExpenseForm = ({ onSubmit, players }: ExpenseFormProps) => {
         name="category"
         control={control}
         rules={{ required: true }}
+        defaultValue={categories[0]}
         render={({ field, fieldState }) => (
           <FormControl fullWidth error={!!fieldState.error}>
             <InputLabel>カテゴリー</InputLabel>
